@@ -25,7 +25,7 @@ def geraLista(quantidadeItens):
   return novaLista
 
 ############ MÉTODO DE ORDENAÇÃO ############
-#    [0 0 7 5 3 7 1 2] 
+
 def insertionsort(lista):
   tamanhoLista = len(lista)
 
