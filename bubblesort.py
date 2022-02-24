@@ -20,18 +20,22 @@ def arredondar(num, dec=0):
 
 ############ GERADOR DE LISTA ALEATÓRIA POR TAMANHO ############
 def geraLista(quantidadeItens):
-  return np.random.randint(0, quantidadeItens, quantidadeItens)
+  lista = np.random.randint(0, quantidadeItens, quantidadeItens)
+  novaLista = np.array(lista)
+  return novaLista
 
 ############ MÉTODO DE ORDENAÇÃO ############
 def bubblesort(lista):
-  tamanhoLista = len(lista) - 1
+  tamanhoLista = len(lista)
 
   for ultimo in range(tamanhoLista, 0, -1):
-    for i in range(ultimo):
+    for i in range(ultimo-1):
       if(lista[i] > lista[i + 1]):
         lista[i], lista[i + 1] = lista[i + 1], lista[i]
 
   return lista
+
+############ VARIÁVEIS E PROGRAMA ############
 
 listasAleatorias = [
   geraLista(1000),
@@ -51,20 +55,19 @@ tamanhos = []
 duracoesAleatorio = []
 duracoesPiorCaso = []
 
-for i in range(len(listasAleatorias)):
+for lista in listasAleatorias:
   duracaoOrdenacao = medirTempo(
-    lambda : listasOrdenadas.append(bubblesort(listasAleatorias[i]))
+    lambda : listasOrdenadas.append(bubblesort(lista.copy()))
   )
-  tamanhos.append(len(listasAleatorias[i]))
+  tamanhos.append(len(lista))
   duracoesAleatorio.append(arredondar(duracaoOrdenacao, 4))
 
 for lista in listasOrdenadas:
   listasPiorCaso.append(lista[::-1])
   
-for i in range(len(listasPiorCaso)):
-  print('Lista: ', listasPiorCaso[i])
+for lista in listasPiorCaso:
   duracaoOrdenacao = medirTempo(
-    lambda : listasOrdenadas.append(bubblesort(listasPiorCaso[i]))
+    lambda : listasOrdenadas.append(bubblesort(lista.copy()))
   )
   duracoesPiorCaso.append(arredondar(duracaoOrdenacao, 4))
 
