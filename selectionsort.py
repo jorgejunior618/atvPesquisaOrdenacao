@@ -43,20 +43,14 @@ def selectionsort(lista):
 ############ VARIÁVEIS E PROGRAMA ############
 
 listasAleatorias = [
-  geraLista(1),
-  geraLista(2),
-  geraLista(3),
-  geraLista(4),
-  geraLista(5),
-  geraLista(8),
-  # geraLista(1000),
-  # geraLista(2000),
-  # geraLista(3000),
-  # geraLista(4000),
-  # geraLista(5000),
-  # geraLista(8000),
-  # geraLista(11000),
-  # geraLista(15000)
+  geraLista(1000),
+  geraLista(2000),
+  geraLista(3000),
+  geraLista(4000),
+  geraLista(5000),
+  geraLista(8000),
+  geraLista(11000),
+  geraLista(15000)
 ]
 
 listasOrdenadas = []
@@ -66,7 +60,6 @@ tamanhos = []
 duracoesAleatorio = []
 duracoesPiorCaso = []
 
-print('listasAleatorias')
 for lista in listasAleatorias:
   duracaoOrdenacao = medirTempo(
     lambda : listasOrdenadas.append(selectionsort(lista.copy()))
@@ -77,7 +70,6 @@ for lista in listasAleatorias:
 for lista in listasOrdenadas:
   listasPiorCaso.append(lista[::-1])
 
-print('\n\n\nlistasPiorCaso')
 for lista in listasPiorCaso:
   duracaoOrdenacao = medirTempo(
     lambda : listasOrdenadas.append(selectionsort(lista.copy()))
