@@ -24,21 +24,14 @@ def geraLista(quantidadeItens):
 
 ############ MÉTODO DE ORDENAÇÃO ############
 def bubblesort(lista):
-  inversoes = 1
-  tamanhoLista = len(lista)
+  tamanhoLista = len(lista) - 1
 
-  while (inversoes != 0):
-    inversoes = 0
-    for i in range(tamanhoLista):
-      if (i + 1 == tamanhoLista): 
-        break
-
-      if (lista[i] > lista[i + 1]):
+  for ultimo in range(tamanhoLista, 0, -1):
+    for i in range(ultimo):
+      if(lista[i] > lista[i + 1]):
         lista[i], lista[i + 1] = lista[i + 1], lista[i]
-        inversoes += 1
 
   return lista
-
 
 listasAleatorias = [
   geraLista(1000),
@@ -69,6 +62,7 @@ for lista in listasOrdenadas:
   listasPiorCaso.append(lista[::-1])
   
 for i in range(len(listasPiorCaso)):
+  print('Lista: ', listasPiorCaso[i])
   duracaoOrdenacao = medirTempo(
     lambda : listasOrdenadas.append(bubblesort(listasPiorCaso[i]))
   )
