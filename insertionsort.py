@@ -25,22 +25,21 @@ def geraLista(quantidadeItens):
   return novaLista
 
 ############ MÉTODO DE ORDENAÇÃO ############
-
 def insertionsort(lista):
   tamanhoLista = len(lista)
 
-  for atual in range(1, tamanhoLista):
-    indiceMenor = atual
+  for indice in range(1, tamanhoLista):
+    # indice = 4
+    valorAtual = lista[indice] # 5
 
-    for i in range(atual - 1, -1, -1):
-      if(lista[atual] < lista[i]):
-        indiceMenor = i
-      else: break
+    i = indice # 2
 
-    if(indiceMenor != atual):
-      valorAtual = lista[atual]
-      lista = np.delete(lista, atual)
-      lista = np.insert(lista, indiceMenor, valorAtual)
+    while(i > 0 and valorAtual < lista[i - 1]):
+      lista[i] = lista[i - 1]
+      i -= 1
+
+    if (i != indice):
+      lista[i] = valorAtual
 
   return lista
 
