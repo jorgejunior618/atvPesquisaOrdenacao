@@ -29,10 +29,8 @@ def insertionsort(lista):
   tamanhoLista = len(lista)
 
   for indice in range(1, tamanhoLista):
-    # indice = 4
-    valorAtual = lista[indice] # 5
-
-    i = indice # 2
+    valorAtual = lista[indice]
+    i = indice 
 
     while(i > 0 and valorAtual < lista[i - 1]):
       lista[i] = lista[i - 1]
