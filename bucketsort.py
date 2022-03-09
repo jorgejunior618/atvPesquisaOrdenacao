@@ -23,10 +23,10 @@ def geraLista(quantidadeItens):
   novaLista = np.array(lista, dtype=int)
   return novaLista
 
-# def geraListaPiorCaso(quantidadeItens):
-#   lista = np.random.randint(low=quantidadeItens*9, high=quantidadeItens*10, size=quantidadeItens)
-#   novaLista = np.array(lista, dtype=int)
-#   return novaLista
+def geraListaPiorCaso(quantidadeItens):
+  lista = np.arange(quantidadeItens)
+  novaLista = np.array(lista, dtype=int)
+  return novaLista[::-1]
 
 ############ VERIFICA SE OS ITENS DA LISTA SÃO IGUAIS ############
 def listaDeRepetidos(lista):
@@ -41,9 +41,13 @@ def listaDeRepetidos(lista):
 def bucketsort(lista):
   tamanhoLista = len(lista)
   buckets = [[], []]
+  media = 0
 
   for i in range(tamanhoLista):
-    if (lista[i] <= (np.max(lista) + np.min(lista)) / 2):
+    media += lista[i] / tamanhoLista
+
+  for i in range(tamanhoLista):
+    if (lista[i] <= media):
       buckets[0].append(lista[i])
     else:
       buckets[1].append(lista[i])
@@ -61,17 +65,25 @@ def bucketsort(lista):
 ############ VARIÁVEIS E PROGRAMA ############
 
 listasAleatorias = [
-  geraLista(1000),
-  geraLista(2000),
-  geraLista(3000),
-  geraLista(4000),
-  geraLista(5000),
-  geraLista(8000),
   geraLista(10000),
+  geraLista(20000),
+  geraLista(30000),
+  geraLista(40000),
+  geraLista(50000),
+  geraLista(80000),
+  geraLista(100000),
 ]
 
 listasOrdenadas = []
-listasPiorCaso = []
+listasPiorCaso = [
+  geraListaPiorCaso(10000),
+  geraListaPiorCaso(20000),
+  geraListaPiorCaso(30000),
+  geraListaPiorCaso(40000),
+  geraListaPiorCaso(50000),
+  geraListaPiorCaso(80000),
+  geraListaPiorCaso(100000),
+]
 
 tamanhos = []
 duracoesAleatorio = []
@@ -83,9 +95,6 @@ for lista in listasAleatorias:
   )
   tamanhos.append(len(lista))
   duracoesAleatorio.append(arredondar(duracaoOrdenacao, 4))
-
-for lista in listasOrdenadas:
-  listasPiorCaso.append(lista[::-1])
 
 for lista in listasPiorCaso:
   duracaoOrdenacao = medirTempo(
