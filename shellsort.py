@@ -31,21 +31,6 @@ def geraListaPiorCaso(quantidadeItens):
 
 ############ MÉTODO DE ORDENAÇÃO ############
 
-# def shellsort(lista):
-#     tamanhoLista = len(lista)
-#     salto = 1
-    
-#     while salto > 0:
-#       for i in range(salto, tamanhoLista):
-#         valorAtual = lista[i]
-#         j = i
-#         while j >= salto and valorAtual < lista[j - salto]:
-#           lista[j] = lista[j - salto]
-#           j = j - salto
-#           lista[j] = valorAtual
-#       salto = int(salto / 2.2)
-#     return lista
-
 def shellsort(lista):
     tamanhoLista = len(lista)
     salto = 1
