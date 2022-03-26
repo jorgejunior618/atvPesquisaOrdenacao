@@ -100,29 +100,23 @@ tamanhos = []
 duracoesAleatorio = []
 duracoesPiorCaso = []
 
-print('listasAleatorias:')
 for lista in listasAleatorias:
-  print(lista)
   duracaoOrdenacao = medirTempo(
     lambda : listasOrdenadas.append(radixsort(lista.copy()))
   )
   tamanhos.append(len(lista))
   duracoesAleatorio.append(arredondar(duracaoOrdenacao, 4))
 
-print('listasOrdenadas:')
-for lista in listasOrdenadas:
-  print(lista)
-
-# for lista in listasPiorCaso:
-#   duracaoOrdenacao = medirTempo(
-#     lambda : listasOrdenadas.append(radixsort(lista.copy()))
-#   )
-#   duracoesPiorCaso.append(arredondar(duracaoOrdenacao, 4))
+for lista in listasPiorCaso:
+  duracaoOrdenacao = medirTempo(
+    lambda : listasOrdenadas.append(radixsort(lista.copy()))
+  )
+  duracoesPiorCaso.append(arredondar(duracaoOrdenacao, 4))
 
 plotter.title("Duração Radixsort")
 plotter.xlabel("Tamanho das Séries")
 plotter.ylabel("Tempo")
 plotter.plot(tamanhos, duracoesAleatorio, label="Aleatória")
-# plotter.plot(tamanhos, duracoesPiorCaso, label="Pior caso")
+plotter.plot(tamanhos, duracoesPiorCaso, label="Pior caso")
 plotter.legend()
 plotter.show()
