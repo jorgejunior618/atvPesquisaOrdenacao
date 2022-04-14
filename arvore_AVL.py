@@ -70,30 +70,49 @@ class ArvoreBinaria:
       self.direito.imprimirNos()
 
   def menorValor(self):
+    '''
+    Retorna o valor do item de menor valor dentro da Árvore
+    Realizando a busca de forma iterativa
+    '''
     while (self.esquerdo != None):
       self = self.esquerdo
 
     return self.dado
 
   def menorValorRecursiva(self):
+    '''
+    Retorna o valor do item de menor valor dentro da Árvore
+    Realizando a busca de forma recursiva
+    '''
     if(self.esquerdo == None):
       return self.dado
     else:
       return self.menorValor(self.esquerdo)
 
   def maiorValor(self):
+    '''
+    Retorna o valor do item de maior valor dentro da Árvore
+    Realizando a busca de forma iterativa
+    '''
     while (self.direito != None):
       self = self.direito
 
     return self.dado
 
   def maiorValorRecursiva(self):
+    '''
+    Retorna o valor do item de maior valor dentro da Árvore
+    Realizando a busca de forma recursiva
+    '''
     if(self.direito == None):
       return self.dado
     else:
       return self.maiorValor(self.direito)
 
   def insereNo(self, dado):
+    '''
+    Insere o valor informado seguindo os padrões de uma Árvore Binária, e realiza o balanceamento da Árvore
+    '''
     if (dado <= self.dado):
       if (self.esquerdo == None):
         self.esquerdo = self.criaNo(dado)
@@ -107,14 +126,24 @@ class ArvoreBinaria:
     self._executaBalanceamento()
 
   def removerNo(self, dado):
+    '''
+    Procura e remove o valor informado seguindo os padrões de uma Árvore Binária, e realiza o balanceamento da Árvore.
+    Retorna a Árvore com o item removido
+    Exemplo de uso
+    ```
+    arvore = ArvoreBinaria(5)
+    { ... }
+    arvore = arvore.removeNo(dado)
+    ```
+    '''
     if (dado < self.dado):
       if (self.esquerdo == None):
-        return False
+        return self
       else:
         self.esquerdo = self.esquerdo.removerNo(dado)
     elif (dado > self.dado):
       if (self.direito == None):
-        return False
+        return self
       else:
         self.direito = self.direito.removerNo(dado)
     else:
@@ -205,6 +234,8 @@ class ArvoreBinaria:
       + " }"
     )
 
+
+print("\n ####### Inserindo os Valores: 5, 15, 3, 18, 1, 4, 13, 20 #######")
 arvere = ArvoreBinaria(5)
 arvere.insereNo(15)
 arvere.insereNo(3)
@@ -214,9 +245,19 @@ arvere.insereNo(4)
 arvere.insereNo(13)
 arvere.insereNo(20)
 
-arvere.imprimirNos()
-print("\n\n\nVai apagar")
-arvere = arvere.removerNo(1)
-print("Apagou 1")
-arvere.imprimirNos()
+print("\n ####### Imprimindo Árvore ordenada #######")
+print(" ==========================================")
 arvere.imprimirArvore()
+print("\n ####### Imprimindo cada Nó da Árvore com seus respectivos filhos #######")
+print(" ========================================================================")
+arvere.imprimirNos()
+
+print("\n ####### Removendo a Raíz #######")
+arvere = arvere.removerNo(10)
+
+print("\n ####### Imprimindo Árvore ordenada #######")
+print(" ==========================================")
+arvere.imprimirArvore()
+print("\n ####### Imprimindo cada Nó da Árvore com seus respectivos filhos #######")
+print(" ========================================================================")
+arvere.imprimirNos()
